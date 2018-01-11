@@ -1,0 +1,57 @@
+<!--
+  Generated template for the ReportContentPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar no-border-top color="secondary" text-center>
+    <ion-title>上报内容详情</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="report_data" padding="5 15 5 10">
+ <label>上报内容</label>
+<hr>
+<ion-grid class="ion-grid" *ngIf="(reportDta!=undefined&&reportDta!=null)">
+  <ion-row >
+    <ion-col col-3 class="col3">上报类型</ion-col>
+    <ion-col  class="col1" col-3><div>{{mcommonUtils.waringType(reportDta.type)}}</div></ion-col>
+    <ion-col class="col2" col-2>护林员</ion-col>
+    <ion-col  class="col1" col-3><div>{{reportDta.owner}}</div></ion-col>
+  </ion-row>
+
+  <ion-row >
+    <ion-col col-3 class="col3">经 度</ion-col>
+    <ion-col  class="col1" col-3><div>{{reportDta.latitude.substr(0,8)}}</div></ion-col>
+    <ion-col class="col2" col-2>纬   度</ion-col>
+    <ion-col  class="col1" col-3><div>{{reportDta.longitude.substr(0,9)}}</div></ion-col>
+  </ion-row>
+
+  <ion-row >
+    <ion-col col-3 class="col3">上报时间</ion-col>
+    <ion-col  class="col1" col-8><div>{{reportDta.tm}}</div></ion-col>
+  </ion-row>
+  <ion-row >
+    <ion-col col-3 class="col3">地址</ion-col>
+    <ion-col  class="col1" col-8><div>{{splitStr(reportDta.sbnr)[1]}}</div></ion-col>
+  </ion-row>
+  <ion-row >
+    <ion-col col-3 class="col3" style="line-height: 80px">上报内容</ion-col>
+    <ion-col  col-8 class="col1"  ><div style="line-height: 80px;text-align: left;padding-left: 5px">{{splitStr(reportDta.sbnr)[0]}}</div></ion-col>
+  </ion-row>
+
+  <ion-row *ngIf="(paths!=null&&paths!=undefined&&paths.length>0)">
+    <ion-col col-3 class="col3">附件</ion-col>
+    <ion-col tappable class="col11" col-8 >
+      <span *ngFor="let path of paths;let i=index">
+        <img style="width: 80px;height: 60px" src={{getPath(path.id)}} (click)="showImage(path.id)">
+      </span>
+
+    </ion-col>
+  </ion-row>
+</ion-grid>
+  <label>审核内容</label>
+  <hr>
+</ion-content>

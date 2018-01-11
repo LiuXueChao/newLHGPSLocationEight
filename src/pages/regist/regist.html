@@ -1,0 +1,116 @@
+<!--
+  Generated template for the RegistPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-toolbar color="secondary" >
+    <!--<ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon>-->
+    <ion-title text-center>用户信息</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label>省:</ion-label>
+      <ion-select [(ngModel)]="provice" interface="popover" (ionChange)="proviceChange($event)">
+        <ion-option *ngFor="let item of provices" [value]="item">{{item.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>州(市):</ion-label>
+      <ion-select [(ngModel)]="city" interface="popover" (ionChange)="proviceChange($event)">
+        <ion-option *ngFor="let item of citys" [value]="item">{{item.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>区(县):</ion-label>
+      <ion-select [(ngModel)]="county" interface="popover" (ionChange)="proviceChange($event)">
+        <ion-option *ngFor="let item of countys" [value]="item">{{item.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>镇(乡):</ion-label>
+      <ion-select [(ngModel)]="township" interface="popover" (ionChange)="proviceChange($event)">
+        <ion-option *ngFor="let item of townships" [value]="item">{{item.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>所属系统:</ion-label>
+      <ion-select [(ngModel)]="selectSystem" interface="popover" (ionChange)="sysChange($event)">
+        <ion-option *ngFor="let item of systemAndRoles" [value]="item">{{item.lhproject.projectName}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>角色:</ion-label>
+      <ion-select [(ngModel)]="role" interface="popover" (ionChange)="roleChange($event)">
+        <ion-option *ngFor="let item of roles" [value]="item">{{item.roleName}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>所属单位:</ion-label>
+      <ion-select [(ngModel)]="departmentd" interface="popover" (ionChange)="departmentdChange($event)">
+        <ion-option *ngFor="let item of departments" [value]="item">{{item.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>姓名:</ion-label>
+      <ion-input [(ngModel)]="userName"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>手机号:</ion-label>
+      <ion-input [(ngModel)]="phoneNumbe"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>职务:</ion-label>
+      <ion-input [(ngModel)]="position"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>性别:</ion-label>
+      <ion-label>
+        <ion-row>
+          <ion-col col-auto text-center *ngFor="let item of sex;let i=index;">
+            {{item.value}}
+            <ion-icon (click)="chekFun(i)" name="checkmark-circle"
+                      [ngClass]="{'button-clear-ios-primary': item.chek,'button-clear-ios-my':!item.chek}"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-row style="margin-top: 30px">
+    <ion-col>
+      <div (click)="submitData()">提 交</div>
+    </ion-col>
+    <ion-col>
+      <div>扫一扫</div>
+    </ion-col>
+    <ion-col>
+      <div (click)="close()">退 出</div>
+    </ion-col>
+  </ion-row>
+
+
+  <ion-row>
+    <ion-col col-auto style="margin-left: 50px">
+      <ion-img src="assets/img/lonhwin.png" style="width: 10px;height: 10px"></ion-img>
+    </ion-col>
+    <ion-col>
+      昆明龙慧科技有限公司
+    </ion-col>
+  </ion-row>
+
+
+</ion-content>

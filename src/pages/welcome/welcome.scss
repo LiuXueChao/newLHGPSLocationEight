@@ -1,0 +1,13 @@
+page-welcome {
+  .content{
+    background-image:url("../assets/img/loading_bg.png");
+    background-size: contain;
+    margin-top: 5%;
+    width: 100%;
+    height: 100%;
+  }
+
+  ion-row{
+    border-bottom: solid 1px rgba(186, 212, 187, 0.07);
+  }
+}

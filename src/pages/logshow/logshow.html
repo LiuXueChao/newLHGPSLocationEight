@@ -1,0 +1,37 @@
+<!--
+  Generated template for the LogshowPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar no-border-top color="secondary" text-center>
+    <ion-title>运行日志</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <!--<ion-refresher (ionRefresh)="doRefresh($event)">-->
+    <!--<ion-refresher-content-->
+    <!--pullingIcon="arrow-dropdown"-->
+    <!--pullingText="Pull to refresh"-->
+    <!--refreshingSpinner="circles"-->
+     <!--refreshingText="刷新中..."-->
+    <!--&gt;-->
+    <!--</ion-refresher-content>-->
+  <!--</ion-refresher>-->
+  <div class="title">    共记录了{{logs.length}}条日志</div>
+  <hr>
+<ion-list *ngIf="logs!=null" class="list">
+  <ion-item *ngFor="let log of logs">
+    {{log.id}}----{{log.writeTime}}-{{log.logContent}}
+  </ion-item>
+</ion-list>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="加载更多数据...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

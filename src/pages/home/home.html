@@ -1,0 +1,124 @@
+<!--<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=vGYrnuQNqkqwpWg8koBwsOdjc4kZGqsl"></script>-->
+<ion-header>
+  <ion-toolbar color="secondary" >
+    <button ion-button menuToggle icon-only>
+      <ion-icon name="ios-list-outline"></ion-icon>
+    </button>
+    <ion-title text-center>定位终端{{locationTracker.lat}}--{{locationTracker.lng}}</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<!--侧滑部分-->
+<ion-menu [content]="content">
+  <ion-header >
+    <ion-toolbar color="secondary">
+      <ion-title>选择设置选项</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <button ion-item (click)="openPage(1)">
+        设置
+      </button>
+      <button ion-item (click)="openPage(2)">
+        用户信息
+      </button>
+      <button ion-item (click)="openPage(3)">
+       运行日志
+      </button>
+      <button ion-item (click)="openPage(4)">
+        关于我们
+      </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-content #content class="home_content">
+  <div class="home_map">
+
+    <lhbaidu (eventEmitter)="getLatLont($event)"></lhbaidu>
+    <ion-fab top right edge style="margin-top: 80px" id="fab">
+      <button ion-fab mini  color="primary" ><ion-icon name="md-list-box"></ion-icon></button>
+      <ion-fab-list>
+        <button ion-fab (click)="gotoReportList()"><ion-icon name="md-cloud-upload" style="color: #32db64" ></ion-icon></button>
+        <button ion-fab (click)="gotoYX()"><ion-icon name="md-contact" style="color: #32db64"></ion-icon></button>
+        <button ion-fab (click)="gotoUserInfo()"><ion-icon name="md-information-circle" style="color: #32db64"></ion-icon></button>
+        <button ion-fab (click)="refersh()"><ion-icon name="md-sync" style="color: #32db64"></ion-icon></button>
+
+      </ion-fab-list>
+    </ion-fab>
+
+    <div class="controlShow" id="home_bottom_outside">
+      <ion-icon id="flod" (click)="controlShow()" ios="ios-arrow-dropdown-circle" md="md-arrow-dropdown-circle"
+                style="position:absolute;line-height: 40px;text-align:center;left: 45%;font-size: 3em;color: #2eacdb; display: none"></ion-icon>
+      <ion-icon id="expand" (click)="controlShow()" ios="ios-arrow-dropup-circle" md="md-arrow-dropup-circle"
+                style="position:absolute;line-height: 40px;text-align:center;left: 45%;font-size: 3em;color: #2eacdb"></ion-icon>
+      <div class="home_bottom" id="home_bottom_inside">
+        <ion-grid>
+          <ion-row    *ngFor="let item of childrens;let v=index;">
+            <ion-col    *ngFor="let i of item;let b=index;"  tappable (click)="gotoReport(i)" >
+              <div>
+                <!--<img style="width: 60px; height: 60px;" src="assets/img/home_yjsb_dzwbh.png" >-->
+                <!--<img style="width: 60px; height: 60px;" [src]="requestImg(i.sourceId)" id="{{i.sourceId}}">-->
+                <img style="width: 60px; height: 60px;" src="{{imgs[v][b]}}">
+                <br>
+                <span>
+              {{i.moduleName}}
+            </span>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="home_address">
+    <span>当前位置:</span>
+    <div id="homeAddress">昆明市五华区黄土坡云铜科技园</div>
+  </div>
+  <div class="home_middle1">
+    <img src="assets/img/show_bg.png">
+    <span class="home_middle1_span">巡护河库:</span>
+    <span class="home_middle1_span">未设置</span>
+    <!--#00B9EA"-->
+    <button ion-button icon-end solid color="secondary" [small]="true">同 步</button>
+  </div>
+  <div class="home_middle_content">
+    <div>
+      <div class="home_middle_content_div">信号:<span>无信号</span></div>
+      <div class="home_middle_content_div">
+        经度:<span>102.250934</span>
+      </div>
+    </div>
+    <div>
+      <div class="home_middle_content_div">卫星:<span>15颗</span></div>
+      <div class="home_middle_content_div">
+        纬度:<span>25.250934</span>
+      </div>
+    </div>
+    <div>
+      <div class="home_middle_content_div">状态:<span>正在定位</span></div>
+      <div class="home_middle_content_div">
+        海拔:<span>1950米</span>
+      </div>
+    </div>
+    <div>
+      <div class="home_middle_content_div">待传:<span>15条</span></div>
+      <div class="home_middle_content_div">
+        时间:<span>10-19 09:20</span>
+      </div>
+    </div>
+  </div>
+  <div class="home_middle1">
+    <img src="assets/img/show_bg.png">
+    <span class="home_middle1_span">一键上报</span>
+    <!--#00B9EA"-->
+    <button ion-button icon-end solid color="secondary" [small]="true" [navPush]="pushPage" [navParams]="params">列 表
+    </button>
+    <button ion-button icon-end solid color="secondary" [small]="true">消 息</button>
+  </div>
+</ion-content>

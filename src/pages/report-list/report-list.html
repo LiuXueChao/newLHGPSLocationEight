@@ -1,0 +1,57 @@
+<!--
+  Generated template for the ReportListPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar no-border-top color="secondary" text-center>
+    <ion-title>上报列表</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding class="content">
+  <ion-item class="ionic-item1">
+    <button ion-button color="secondary" outline>全部</button>
+    <button ion-button color="secondary" outline (click)="after()">上月</button>
+    <button ion-button color="secondary" outline (click)="now()">当月</button>
+    <button ion-button color="secondary" outline (click)="next()" *ngIf="mtime>0">下月</button>
+  </ion-item>
+  <ion-list *ngIf="reportData!=null">
+    <ion-list-header style="text-align: center;background: #FFFFFF">
+      <div *ngIf="reportData.xhts!=null">
+        本月已上报{{reportData.xhts}}天,还差{{reportData.xhzts-reportData.xhts}}天未上报,<br>截至统计时间:{{reportData.tm.substr(5,14)}}
+      </div>
+      <div *ngIf="reportData.xhts==null">
+        本月没有上报数据
+      </div>
+    </ion-list-header>
+    <ion-item *ngFor="let item of reportDatas" style="color: #2eacdb" (click)="gotoMap(item)">
+      <!--<div (click)="gotoMap(item)">-->
+      <ion-row >
+        <ion-col style="color: #2eacdb;font-weight: bold;text-align: left">
+          {{waringType(item.type)}}
+        </ion-col>
+        <ion-col col-5>
+          {{item.tm.substr(5,11)}}
+        </ion-col>
+        <ion-col style="text-align: right">
+          <!--{{item.owner}}- -->
+          {{splitStr(item.sbnr)[2]}}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          内容:{{splitStr(item.sbnr)[0]}}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          地址:{{splitStr(item.sbnr)[1]}}
+        </ion-col>
+      </ion-row>
+      <!--</div>-->
+    </ion-item>
+  </ion-list>
+</ion-content>

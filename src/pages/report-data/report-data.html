@@ -1,0 +1,55 @@
+<!--
+  Generated template for the ReportDataPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar no-border-top color="secondary" text-center>
+    <ion-title>{{this.reportInfo.children.moduleName}}</ion-title>
+    <ion-buttons end>
+      <button ion-button outline small end (click)="reportData()">上 报</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content class="report_content">
+
+  <div id="report_content_div">
+    <span class="report_content_span">上报区域:</span>
+    <span class="report_content_address">{{lhgpspower.adcdName}}</span>
+  </div>
+  <div><span class="report_content_span">上报地址:</span><input [(ngModel)]="reportInfo.point.address"></div>
+  <ion-grid>
+    <ion-row>
+      <ion-col tappable *ngFor="let item of paths;let i=index">
+        <div>
+          <img src={{item.defaultPath}} (click)="cameraPicture($event,i)">
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <hr>
+
+<ion-list style="background: #F2F3F7">
+<ion-item class="content-item" style="background: #F2F3F7;text-align: left">
+  <ion-label style="color:#464647">描述内容:</ion-label>
+  <ion-select [(ngModel)]="mydescript" interface="popover" (ionChange)="descriptChange($event)">
+    <ion-option *ngFor="let item of selectDescript" [value]="item">{{item}}</ion-option>
+  </ion-select>
+</ion-item>
+</ion-list>
+
+  <!--<div >-->
+    <!--<span class="report_content_span">描述内容:</span>-->
+    <!--<div class="report_content_address">-->
+      <!--<ion-select [(ngModel)]="mydescript" interface="popover" (ionChange)="descriptChange($event)">-->
+      <!--<ion-option *ngFor="let item of selectDescript" [value]="item">{{item}}</ion-option>-->
+    <!--</ion-select>-->
+      <!--</div>-->
+  <!--</div>-->
+  <ion-textarea class="report_area" [(ngModel)]="descript" placeholder="请输入描述内容..."></ion-textarea>
+
+
+
+</ion-content>
